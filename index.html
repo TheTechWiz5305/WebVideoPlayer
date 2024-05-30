@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        video {
+            width: 80%;
+            height: auto;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoPlayer" controls>
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split('&').forEach(param => {
+                const [key, value] = param.split('=');
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        const params = getQueryParams();
+        const videoUrl = params['video'];
+        if (videoUrl) {
+            document.getElementById('videoPlayer').src = videoUrl;
+        } else {
+            alert('No video URL provided.');
+        }
+    </script>
+</body>
+</html>
