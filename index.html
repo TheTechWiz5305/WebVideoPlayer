@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-    <video id="videoPlayer" controls autoplay>
+    <video id="videoPlayer" controls autoplay muted>
         Your browser does not support the video tag.
     </video>
     <script>
@@ -39,9 +39,11 @@
         const params = getQueryParams();
         const videoUrl = params['video'];
         if (videoUrl) {
-            document.getElementById('videoPlayer').src = videoUrl;
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = videoUrl;
+            videoPlayer.play();
         } else {
-            alert('No video URL provided.');
+            alert('Please enter a raw video url by appending ?video= at the end of the link, then attach the raw video link after.');
         }
     </script>
 </body>
